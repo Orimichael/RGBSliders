@@ -30,13 +30,28 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        redSlider.value = defaults.floatForKey("red")
+        greenSlider.value = defaults.floatForKey("green")
+        blueSlider.value = defaults.floatForKey("blue")
+
         squareView.layer.borderColor = UIColor.blackColor().CGColor
         squareView.layer.borderWidth = 1
+        
+                updateSquareColor()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // stuff
+        if (segue.identifier == "openColor") {
+         let newViewController = segue.destinationViewController as UIViewController
+            newViewController.view.backgroundColor = squareView.backgroundColor
+        }
     }
     
     @IBAction func updateSquareColor() {
@@ -46,8 +61,15 @@ class ViewController: UIViewController {
         let blue = CGFloat(blueSlider.value)
         
         squareView.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()  //1
+        defaults.setFloat(redSlider.value, forKey: "red")   //2
+        defaults.setFloat(greenSlider.value, forKey: "green")
+        defaults.setFloat(blueSlider.value, forKey: "blue")
+        defaults.synchronize()    //3
     }
 
+    
 
 }
 

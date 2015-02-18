@@ -61,7 +61,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="HgS-nn-zl5" kind="show" id="DgJ-E4-20h"/>
+                                    <segue destination="HgS-nn-zl5" kind="show" identifier="openColor" id="DgJ-E4-20h"/>
                                 </connections>
                             </button>
                         </subviews>
